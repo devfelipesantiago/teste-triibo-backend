@@ -1,34 +1,30 @@
 const connection = require('../db/connection');
 
-const getAllMessages = async () => {
-  const [messages] = await connection.execute('SELECT * FROM messages');
-  return messages;
-};
+const getTasks = async () => {
+  const tasks = await connection.execute('SELECT * FROM tasks') 
+  return tasks;
+}
 
-const updateMessage = async (newMessage, code) => {
-  const updateMessageQuery = 'UPDATE messages SET ? WHERE code = ?';
-    await connection.execute(updateMessageQuery, [newMessage, code]);
-};
+const updateTask = async (newTask) => {
+  const updateQuery = 'UPDATE tasks SET title = ?, description = ?, status = ? WHERE id = ?';
+  const params = [newTask.title, newTask.description, newTask.status, newTask.id];
+  connection.execute(updateQuery, params);
+}
 
-const getMessageByCode = async (code) => {
-  const [[message]] = await connection.execute('SELECT * FROM messages WHERE code = ?', [code]);
-  return message;
-};
+const deleteTask = async (code) => {
+  const deleteQuery = 'DELETE FROM tasks WHERE id = ?';
+  await connection.execute(deleteQuery, [code.id]);
+}
 
-const addMessage = async (message) => {
-  const insertQuery = 'INSERT INTO messages (message) VALUES (?)';
-  await connection.execute(insertQuery, [message]);
-};
-
-const deleteMessage = async (code) => {
-  const deleteQuery = 'DELETE FROM messages WHERE code = ?';
-  await connection.execute(deleteQuery, [code]);
-};
+const addTask = async (newTask) => {
+  const insertQuery = 'INSERT INTO tasks (user_id, title, description, status) VALUES (?, ?, ?, ?)';
+  const params = [newTask.user_id, newTask.title, newTask.description, newTask.status];
+  connection.execute(insertQuery, params);
+}
 
 module.exports = {
-  getAllMessages,
-  updateMessage,
-  getMessageByCode,
-  addMessage,
-  deleteMessage
+  getTasks,
+  updateTask,
+  deleteTask,
+  addTask
 };
