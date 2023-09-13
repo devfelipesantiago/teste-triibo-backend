@@ -1,4 +1,4 @@
-const mysql = require('mysql12/promise');
+const mysql = require('mysql2/promise')
 
 const connection = mysql.createConnection({
   host: process.env.MYSQL_HOST || 'localhost',

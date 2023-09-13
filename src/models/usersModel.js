@@ -1,8 +1,10 @@
 const connection = require('../db/connection');
 
-export const addUser = (user) => {
-  const insertQuery = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
-  const params = [user.name, user.email, user.password];
+const addUser = (name) => {
+  const insertQuery = 'INSERT INTO users (name) VALUES ?)';
+  const params = [name];
   
   connection.execute(insertQuery, params);
 }
+
+module.exports = addUser;

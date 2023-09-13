@@ -18,7 +18,7 @@ const deleteTask = async (code) => {
 
 const addTask = async (newTask) => {
   const insertQuery = 'INSERT INTO tasks (user_id, title, description, status) VALUES (?, ?, ?, ?)';
-  const params = [newTask.user_id, newTask.title, newTask.description, newTask.status];
+  const params = [newTask.userId, newTask.title, newTask.description, newTask.status];
   connection.execute(insertQuery, params);
 }
 
