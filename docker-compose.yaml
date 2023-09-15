@@ -10,3 +10,5 @@ services:
       - "33060:3306"
     volumes:
       - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    env_file:
+       - .env
