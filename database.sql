@@ -1,8 +1,12 @@
 CREATE TABLE users (
     id INT AUTO_INCREMENT,
     name VARCHAR(100),
+    password VARCHAR(255),
     PRIMARY KEY(id)
 );
+
+INSERT INTO users (name, password) VALUES ('Joao', '123');
+INSERT INTO users (name, password) VALUES ('Jose', '123');
 
 CREATE TABLE tasks (
     id INT AUTO_INCREMENT,
