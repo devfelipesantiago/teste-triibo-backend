@@ -52,3 +52,63 @@ Atenciosamente,
 
 Caio Ribeiro
 Triibo
+
+## Instruções:
+
+Este é um guia passo a passo para clonar e inicializar o projeto, inicializar o banco de dados usando o Docker e entender as rotas disponíveis.
+
+## Clonando o projeto do GitHub
+
+1. Abra o terminal.
+2. Navegue até o diretório onde deseja clonar o projeto.
+3. Execute o seguinte comando para clonar o projeto:
+   ```
+   git clone https://github.com/devfelipesantiago/teste-triibo-backend
+   ```
+4. Navegue até o diretório do projeto clonado:
+   ```
+   cd teste-triibo-backend
+   ```
+
+## Inicializando o Projeto
+
+1. Instale as dependências do projeto com o seguinte comando:
+   ```
+   npm install
+   ```
+2. Inicie o servidor com o seguinte comando:
+   ```
+   npm start ou npm run dev para rodar o servidor com o nodemon 
+   ```
+
+## Inicializando o Banco de Dados com Docker
+
+1. Certifique-se de que o Docker está instalado em sua máquina.
+2. No terminal na raiz do projeto, execute o seguinte comando para iniciar uma nova instância do banco de dados:
+   ```
+   docker-compose up
+   ```
+
+## Rotas Disponíveis
+
+- `POST /login`: Esta rota é usada para fazer login no aplicativo. Ela espera receber um objeto JSON com `username` e `password`.
+
+- `POST /users`: Esta rota é usada para adicionar um novo usuário. Ela espera receber um objeto JSON com detalhes do usuário.
+
+- `POST /tasks`: Esta rota é usada para adicionar uma nova tarefa. Ela espera receber um objeto JSON com detalhes da tarefa:
+```
+{
+  "title": "Terminar projeto teste",
+  "description": "Projeto de teste para vaga de desenvolvedor backend",
+  "status": "Em andamento"
+}
+```
+- `GET /tasks`: Esta rota é usada para obter todas as tarefas.
+
+- `GET /tasks/:id`: Esta rota é usada para obter uma tarefa específica pelo ID.
+
+- `PUT /tasks/:id`: Esta rota é usada para atualizar uma tarefa específica pelo ID. Ela espera receber um objeto JSON com os novos detalhes da tarefa.
+
+- `DELETE /tasks/:id`: Esta rota é usada para excluir uma tarefa específica pelo ID.
+
+Por favor, note que todas as rotas, exceto `POST /login` e `POST /users`, requerem autenticação.
